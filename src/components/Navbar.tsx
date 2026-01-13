@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo1.jpg";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,19 +33,19 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-28">
+      <div className="container mx-auto px-6 lg:px-12 rounded-lg">
+        <div className="flex items-center justify-between h-28 rounded-lg">
           {" "}
           {/* taller navbar for big logo */}
           {/* Logo */}
-          <a href="#" className="flex items-center">
-            <div className="w-24 h-24 md:w-28 md:h-28 relative">
+          <a href="#" className="flex items-center rounded-lg">
+            <div className="w-24 h-24 md:w-36 md:h-36 relative rounded-lg">
               {" "}
               {/* big square box */}
               <img
                 src={logo}
                 alt="JustGold & Silver Logo"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain rounded-lg"
               />
             </div>
           </a>
