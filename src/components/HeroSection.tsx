@@ -43,7 +43,7 @@ export default function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen overflow-hidden bg-navy-900"
+      className="relative min-h-screen overflow-hidden bg-navy-900 pt-12"
     >
       {/* -------- BACKGROUND -------- */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
@@ -116,7 +116,7 @@ export default function HeroSection() {
           {/* ---------- RIGHT IMAGE ---------- */}
           <motion.div
             style={{ y: imageParallaxY, scale: imageScale }}
-            className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
+            className="relative flex justify-center" // centered horizontally
           >
             {/* GOLD + SILVER AMBIENT GLOW */}
             <motion.div
@@ -135,18 +135,18 @@ export default function HeroSection() {
               animate={{
                 opacity: 1,
                 scale: 1,
-                y: [0, -20, 0], // increased Y displacement
+                y: [0, -20, 0], // floating effect
               }}
               transition={{
                 opacity: { duration: 0.6, ease: "easeOut" },
                 scale: { duration: 0.6, ease: "easeOut" },
                 y: {
-                  duration: 1.5, // faster movement
+                  duration: 1.5,
                   repeat: Infinity,
                   ease: "easeInOut",
                 },
               }}
-              className="relative z-10 max-w-lg xl:max-w-2xl 
+              className="relative z-10 max-w-xs xl:max-w-2xl 
       drop-shadow-[0_40px_80px_rgba(0,0,0,0.65)]"
             />
           </motion.div>

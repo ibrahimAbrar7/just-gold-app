@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const footerLinks = {
@@ -35,35 +36,20 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold-400 via-silver-300 to-gold-600 flex items-center justify-center">
-                <span className="text-white font-serif font-bold">J</span>
+            <a href="#" className="flex items-center gap-3 mb-6">
+              {/* Logo Image */}
+              <div className="w-32 h-32 md:w-52 md:h-52 relative">
+                <img
+                  src={logo} // import your logo at the top: import logo from "@/assets/logo.png";
+                  alt="JustGold & Silver Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <span className="font-serif text-2xl font-semibold">
-                Just<span className="text-gold-400">Gold</span> &{" "}
-                <span className="text-silver-300">Silver</span>
-              </span>
             </a>
             <p className="text-navy-300 mb-6 leading-relaxed max-w-xs">
               The trusted platform for digital gold and silver savings in the
               UAE. Real precious metals, real ownership, real security.
             </p>
-            <div className="flex gap-4">
-              {/* Social Icons */}
-              {["twitter", "linkedin", "instagram"].map((social) => (
-                <a
-                  key={social}
-                  href="#"
-                  className="w-10 h-10 rounded-full border border-navy-700 flex items-center justify-center hover:border-gold-500 hover:bg-gold-500/10 transition-colors"
-                >
-                  <span className="sr-only">{social}</span>
-                  <div
-                    className="w-4 h-4 bg-navy-400"
-                    style={{ maskImage: `url(/icons/${social}.svg)` }}
-                  />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Link Columns */}

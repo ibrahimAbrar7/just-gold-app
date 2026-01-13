@@ -3,15 +3,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -35,18 +34,21 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-28">
+          {" "}
+          {/* taller navbar for big logo */}
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center">
-              <span className="text-white font-serif font-bold text-sm">J</span>
+          <a href="#" className="flex items-center">
+            <div className="w-24 h-24 md:w-28 md:h-28 relative">
+              {" "}
+              {/* big square box */}
+              <img
+                src={logo}
+                alt="JustGold & Silver Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <span className="font-serif text-xl font-semibold">
-              Just
-              <span className="text-gradient-gold">Gold</span>
-            </span>
           </a>
-
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
@@ -63,8 +65,7 @@ const Navbar = () => {
               </a>
             ))}
           </div>
-
-          {/* CTA Buttons */}
+          {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <a
               href="#"
@@ -83,7 +84,6 @@ const Navbar = () => {
               Get Started
             </a>
           </div>
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -91,7 +91,7 @@ const Navbar = () => {
               isScrolled ? "text-navy-800" : "text-navy-400"
             }`}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
@@ -110,8 +110,8 @@ const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="block text-navy-800 hover:text-gold-600 py-2 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  className="block text-navy-800 hover:text-gold-600 py-2 transition-colors"
                 >
                   {link.label}
                 </a>
