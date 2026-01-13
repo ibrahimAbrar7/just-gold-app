@@ -9,31 +9,39 @@ const HowItWorks = () => {
     offset: ["start end", "end start"]
   });
 
+  
+  const lineWidth1 = useTransform(scrollYProgress, [0.2, 0.4], ["0%", "100%"]);
+  const lineWidth2 = useTransform(scrollYProgress, [0.3, 0.5], ["0%", "100%"]);
+  const lineWidth3 = useTransform(scrollYProgress, [0.4, 0.6], ["0%", "100%"]);
   const lineWidth = useTransform(scrollYProgress, [0.1, 0.5], ['0%', '100%']);
 
   const steps = [
     {
       icon: Smartphone,
-      number: '01',
-      title: 'Open Your Account',
-      description: 'Complete verification in minutes with your Emirates ID. Start investing with as little as AED 50.',
+      number: "01",
+      title: "Download the App",
+      description: "Your gold journey begins here. Download on iOS or Android.",
     },
     {
       icon: CreditCard,
-      number: '02',
-      title: 'Buy Gold Instantly',
-      description: 'Purchase 24K gold at live market prices. Your gold is allocated and stored immediately.',
+      number: "02",
+      title: "Register Instantly",
+      description: "Complete a fast, secure, and compliant sign-up in minutes.",
     },
     {
       icon: Vault,
-      number: '03',
-      title: 'Own Real Gold',
-      description: 'Your gold is stored in high-security UAE vaults. Sell anytime or take physical delivery.',
+      number: "03",
+      title: "Start Investing",
+      description: "Buy 24K gold from AED 10 — secure, ethical, and insured.",
     },
   ];
 
   return (
-    <section id="how-it-works" ref={containerRef} className="py-24 lg:py-32 bg-gold-50/50">
+    <section
+      id="how-it-works"
+      ref={containerRef}
+      className="py-24 lg:py-32 bg-gold-50/50"
+    >
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
@@ -49,16 +57,27 @@ const HowItWorks = () => {
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-navy-900 mb-6">
             How It Works
           </h2>
-          <p className="text-lg text-navy-500 max-w-2xl mx-auto">
-            From account opening to gold ownership in three simple steps.
-          </p>
+          <div className="max-w-4xl mx-auto mb-16">
+            <motion.div
+              style={{ width: lineWidth1 }}
+              className="h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mb-8"
+            />
+            <motion.div
+              style={{ width: lineWidth2 }}
+              className="h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mb-8 ml-auto"
+            />
+            <motion.div
+              style={{ width: lineWidth3 }}
+              className="h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent"
+            />
+          </div>
         </motion.div>
 
         {/* Steps */}
         <div className="relative max-w-5xl mx-auto">
           {/* Connecting Line - Desktop */}
           <div className="hidden md:block absolute top-24 left-[16.67%] right-[16.67%] h-px bg-gold-200">
-            <motion.div 
+            <motion.div
               style={{ width: lineWidth }}
               className="h-full bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400"
             />

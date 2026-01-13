@@ -1,37 +1,50 @@
-import { motion } from 'framer-motion';
-import { TrendingUp, Clock, Coins, Truck, PieChart, Headphones } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  TrendingUp,
+  Clock,
+  Coins,
+  Truck,
+  PieChart,
+  Headphones,
+} from "lucide-react";
 
 const WhyJustGold = () => {
   const features = [
     {
       icon: TrendingUp,
-      title: 'Live Market Prices',
-      description: 'Buy and sell at real-time international gold rates with transparent pricing.',
+      title: "Live Gold & Silver Prices",
+      description:
+        "Buy and sell gold and silver at real-time international rates, ensuring complete transparency and fair value for your savings.",
     },
     {
       icon: Clock,
-      title: '24/7 Trading',
-      description: 'Trade gold anytime. Your investment never sleeps, and neither does our platform.',
+      title: "24/7 Savings Access",
+      description:
+        "Manage your gold and silver savings anytime, anywhere. Your investments are always accessible digitally.",
     },
     {
       icon: Coins,
-      title: 'Start From AED 50',
-      description: 'No minimum investment barrier. Build your gold holdings at your own pace.',
+      title: "Start Small, Grow Your Portfolio",
+      description:
+        "Invest from as little as AED 50 and steadily grow your gold and silver holdings over time.",
     },
     {
       icon: Truck,
-      title: 'Physical Delivery',
-      description: 'Convert your digital gold to physical bars or coins delivered to your door.',
+      title: "Convert to Physical Gold & Silver",
+      description:
+        "Easily redeem your digital gold and silver into physical bars or coins delivered securely to your doorstep.",
     },
     {
       icon: PieChart,
-      title: 'Zero Storage Fees',
-      description: 'No hidden costs. Your gold is stored and insured at no additional charge.',
+      title: "Zero Storage Fees",
+      description:
+        "Your gold and silver savings are safely stored in fully insured vaults, with no hidden fees or extra charges.",
     },
     {
       icon: Headphones,
-      title: 'Dedicated Support',
-      description: 'Personal assistance from our gold specialists whenever you need it.',
+      title: "Dedicated Support",
+      description:
+        "Receive expert guidance on your gold and silver savings whenever you need assistance or advice.",
     },
   ];
 
@@ -50,10 +63,12 @@ const WhyJustGold = () => {
             Your Advantage
           </span>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-navy-900 mb-6">
-            Why Choose JustGold
+            Why Choose JustGold & Silver
           </h2>
           <p className="text-lg text-navy-500 max-w-2xl mx-auto">
-            The most trusted platform for digital gold investment in the UAE.
+            The UAE’s most trusted platform for gold and silver savings. Secure,
+            transparent, and flexible investments designed for both new and
+            experienced investors.
           </p>
         </motion.div>
 

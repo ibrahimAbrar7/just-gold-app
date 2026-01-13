@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -10,26 +12,26 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Why JustGold', href: '#why-justgold' },
-    { label: 'Security', href: '#security' },
-    { label: 'About', href: '#about' },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Why JustGold", href: "#why-justgold" },
+    { label: "Security", href: "#security" },
+    { label: "About", href: "#about" },
   ];
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gold-100' 
-          : 'bg-transparent'
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-gold-100"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-6 lg:px-12">
@@ -39,8 +41,9 @@ const Navbar = () => {
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center">
               <span className="text-white font-serif font-bold text-sm">J</span>
             </div>
-            <span className="font-serif text-xl font-semibold text-navy-800">
-              Just<span className="text-gradient-gold">Gold</span>
+            <span className="font-serif text-xl font-semibold">
+              Just
+              <span className="text-gradient-gold">Gold</span>
             </span>
           </a>
 
@@ -50,7 +53,11 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-navy-600 hover:text-gold-600 transition-colors duration-300"
+                className={`text-sm font-medium transition-colors duration-300 ${
+                  isScrolled
+                    ? "text-navy-800 hover:text-gold-600"
+                    : "text-navy-100 hover:text-gold-600"
+                }`}
               >
                 {link.label}
               </a>
@@ -59,10 +66,20 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="#" className="text-sm font-medium text-navy-700 hover:text-gold-600 transition-colors">
+            <a
+              href="#"
+              className={`text-sm font-medium transition-colors duration-300 ${
+                isScrolled
+                  ? "text-navy-800 hover:text-gold-600"
+                  : "text-navy-100 hover:text-gold-600"
+              }`}
+            >
               Sign In
             </a>
-            <a href="#cta" className="btn-gold rounded-full text-sm px-6 py-2.5">
+            <a
+              href="#cta"
+              className="btn-gold rounded-full text-sm px-6 py-2.5"
+            >
               Get Started
             </a>
           </div>
@@ -70,7 +87,9 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-navy-700"
+            className={`md:hidden p-2 transition-colors ${
+              isScrolled ? "text-navy-800" : "text-navy-400"
+            }`}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -82,7 +101,7 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white border-t border-gold-100"
           >
@@ -91,15 +110,20 @@ const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="block text-navy-700 hover:text-gold-600 py-2 transition-colors"
+                  className="block text-navy-800 hover:text-gold-600 py-2 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
               <div className="pt-4 border-t border-gold-100 space-y-3">
-                <a href="#" className="block text-navy-700">Sign In</a>
-                <a href="#cta" className="btn-gold rounded-full text-center block py-3">
+                <a href="#" className="block text-navy-800">
+                  Sign In
+                </a>
+                <a
+                  href="#cta"
+                  className="btn-gold rounded-full text-center block py-3"
+                >
                   Get Started
                 </a>
               </div>

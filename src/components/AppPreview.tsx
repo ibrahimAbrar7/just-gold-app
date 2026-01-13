@@ -1,11 +1,11 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const AppPreview = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const leftPhoneY = useTransform(scrollYProgress, [0.2, 0.8], [100, -50]);
@@ -13,7 +13,10 @@ const AppPreview = () => {
   const opacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
 
   return (
-    <section ref={containerRef} className="py-24 lg:py-32 bg-gold-50/30 overflow-hidden">
+    <section
+      ref={containerRef}
+      className="py-24 lg:py-32 bg-gold-50/30 overflow-hidden"
+    >
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Phone Mockups */}
@@ -35,21 +38,39 @@ const AppPreview = () => {
                   {/* App Content */}
                   <div className="p-4 space-y-4">
                     <div className="text-center">
-                      <div className="text-xs text-navy-400 mb-1">Your Balance</div>
-                      <div className="font-serif text-3xl text-navy-900">12.847g</div>
+                      <div className="text-xs text-navy-400 mb-1">
+                        Your Balance
+                      </div>
+                      <div className="font-serif text-3xl text-navy-900">
+                        12.847g
+                      </div>
                       <div className="text-sm text-gold-600">≈ AED 8,392</div>
                     </div>
                     <div className="h-px bg-gold-200" />
                     <div className="space-y-2">
-                      <div className="text-xs text-navy-400">Live Gold Price</div>
+                      <div className="text-xs text-navy-400">
+                        Live Gold & Silver Prices
+                      </div>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-xl font-semibold text-navy-800">AED 652.40</span>
+                        <span className="text-xl font-semibold text-navy-800">
+                          Gold: AED 652.40
+                        </span>
                         <span className="text-xs text-green-600">+1.2%</span>
+                      </div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-xl font-semibold text-navy-800">
+                          Silver: AED 18.60
+                        </span>
+                        <span className="text-xs text-green-600">+0.8%</span>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-2 pt-2">
-                      <button className="bg-gold-500 text-navy-900 py-2 rounded-lg text-sm font-medium">Buy</button>
-                      <button className="border border-navy-200 text-navy-700 py-2 rounded-lg text-sm font-medium">Sell</button>
+                      <button className="bg-gold-500 text-navy-900 py-2 rounded-lg text-sm font-medium">
+                        Buy
+                      </button>
+                      <button className="border border-navy-200 text-navy-700 py-2 rounded-lg text-sm font-medium">
+                        Sell
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -72,16 +93,45 @@ const AppPreview = () => {
                   </div>
                   {/* App Content - Transaction History */}
                   <div className="p-4 space-y-3">
-                    <div className="text-sm font-medium text-navy-800 mb-3">Recent Activity</div>
+                    <div className="text-sm font-medium text-navy-800 mb-3">
+                      Recent Activity
+                    </div>
                     {[
-                      { type: 'Buy', amount: '2.5g', value: 'AED 1,631', time: 'Today' },
-                      { type: 'Sell', amount: '1.0g', value: 'AED 651', time: 'Yesterday' },
-                      { type: 'Buy', amount: '5.0g', value: 'AED 3,245', time: '3 days ago' },
+                      {
+                        type: "Buy",
+                        metal: "Gold",
+                        amount: "2.5g",
+                        value: "AED 1,631",
+                        time: "Today",
+                      },
+                      {
+                        type: "Sell",
+                        metal: "Silver",
+                        amount: "50g",
+                        value: "AED 930",
+                        time: "Yesterday",
+                      },
+                      {
+                        type: "Buy",
+                        metal: "Gold",
+                        amount: "5.0g",
+                        value: "AED 3,245",
+                        time: "3 days ago",
+                      },
                     ].map((tx, i) => (
-                      <div key={i} className="flex justify-between items-center py-2 border-b border-gold-100 last:border-0">
+                      <div
+                        key={i}
+                        className="flex justify-between items-center py-2 border-b border-gold-100 last:border-0"
+                      >
                         <div>
-                          <div className={`text-sm font-medium ${tx.type === 'Buy' ? 'text-green-600' : 'text-navy-600'}`}>
-                            {tx.type} {tx.amount}
+                          <div
+                            className={`text-sm font-medium ${
+                              tx.type === "Buy"
+                                ? "text-green-600"
+                                : "text-navy-600"
+                            }`}
+                          >
+                            {tx.type} {tx.amount} {tx.metal}
                           </div>
                           <div className="text-xs text-navy-400">{tx.time}</div>
                         </div>
@@ -103,24 +153,25 @@ const AppPreview = () => {
             className="order-1 lg:order-2"
           >
             <span className="text-xs font-medium tracking-wide-luxury text-gold-600 uppercase mb-4 block">
-              Gold at Your Fingertips
+              Gold & Silver at Your Fingertips
             </span>
             <h2 className="font-serif text-4xl md:text-5xl text-navy-900 mb-6 leading-tight">
               The Most Elegant
               <br />
-              Gold Investment App
+              Gold & Silver Savings App
             </h2>
             <p className="text-lg text-navy-500 mb-8 leading-relaxed">
-              Track live prices, buy and sell instantly, and manage your gold portfolio 
-              with our award-winning mobile app. Available on iOS and Android.
+              Track live prices, buy and sell instantly, and manage your gold
+              and silver portfolio with our intuitive mobile app. Available on
+              iOS and Android.
             </p>
 
             <ul className="space-y-4 mb-10">
               {[
-                'Real-time portfolio tracking',
-                'Instant buy & sell orders',
-                'Price alerts & notifications',
-                'Secure biometric login',
+                "Real-time gold & silver portfolio tracking",
+                "Instant buy & sell orders",
+                "Live price alerts & notifications",
+                "Secure biometric login",
               ].map((feature, i) => (
                 <motion.li
                   key={i}
@@ -140,16 +191,16 @@ const AppPreview = () => {
 
             <div className="flex gap-4">
               <a href="#" className="hover:opacity-80 transition-opacity">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
-                  alt="Download on App Store" 
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
+                  alt="Download on App Store"
                   className="h-12"
                 />
               </a>
               <a href="#" className="hover:opacity-80 transition-opacity">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                  alt="Get it on Google Play" 
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                  alt="Get it on Google Play"
                   className="h-12"
                 />
               </a>

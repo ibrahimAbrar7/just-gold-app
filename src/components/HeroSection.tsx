@@ -1,197 +1,167 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import { ChevronDown } from 'lucide-react';
-import goldBarsHero from '@/assets/gold-bars-hero.jpg';
+"use client";
 
-const HeroSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { ChevronDown } from "lucide-react";
+import goldBarsHero from "@/assets/hero-img.png";
+/* ------------------ FEATURES ------------------ */
+import { ShieldCheck, Vault, Zap } from "lucide-react";
+
+const features = [
+  {
+    title: "Pure Gold & Silver Holdings",
+    subtitle: "Invest in 24K gold and 999 silver securely",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Globally Insured Vaults",
+    subtitle: "Safe storage across trusted international vaults",
+    icon: Vault,
+  },
+  {
+    title: "Instant Buy, Sell & Redeem",
+    subtitle: "Real-time transactions anytime, anywhere",
+    icon: Zap,
+  },
+];
+
+
+/* ------------------ COMPONENT ------------------ */
+export default function HeroSection() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  /* -------- SCROLL PARALLAX -------- */
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
+    target: ref,
+    offset: ["start start", "end start"],
   });
 
-  // Content animations
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -60]);
-  const headlineScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.96]);
-  
-  // Subheadline fades slower than headline
-  const subheadlineOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.2]);
-  
-  // Gold image scroll transforms - subtle and elegant
-  const goldScale = useTransform(scrollYProgress, [0, 0.6], [1, 0.92]);
-  const goldY = useTransform(scrollYProgress, [0, 0.6], [0, 80]);
-  const goldRotate = useTransform(scrollYProgress, [0, 0.6], [0, 3]);
-  
-  // Background depth
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.5], [0, 0.4]);
-  
-  // CTA glow intensity
-  const ctaGlow = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const imageParallaxY = useTransform(scrollYProgress, [0, 0.7], [0, 70]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.7], [1, 0.94]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.4], [0.25, 0.55]);
 
   return (
-    <section 
-      ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy-900"
+    <section
+      ref={ref}
+      className="relative min-h-screen overflow-hidden bg-navy-900"
     >
-      {/* Deep Navy Background with subtle gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-800 to-navy-900" />
-      
-      {/* Subtle gold ambient lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--gold-400)/0.08)_0%,_transparent_60%)]" />
-      
-      {/* Darkening overlay on scroll */}
-      <motion.div 
-        style={{ opacity: bgOpacity }}
-        className="absolute inset-0 bg-navy-900/60 z-[1]"
+      {/* -------- BACKGROUND -------- */}
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-900 to-navy-950" />
+
+      <motion.div
+        style={{ opacity: glowOpacity }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,_hsl(var(--gold-400)/0.35),_transparent_60%)]"
       />
 
-      {/* Main Content Container */}
+      {/* -------- CONTENT -------- */}
       <div className="relative z-10 container mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-screen py-24">
-          
-          {/* Left: Text Content */}
-          <motion.div 
-            style={{ opacity: contentOpacity, y: contentY }}
-            className="text-center lg:text-left order-2 lg:order-1"
-          >
-            {/* Trust Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-screen py-24">
+          {/* ---------- LEFT ---------- */}
+          <div className="order-2 lg:order-1 space-y-10">
+            {/* Eyebrow */}
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-gold-400/30 bg-navy-800/50 backdrop-blur-sm"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="inline-block text-sm tracking-[0.35em] uppercase text-gold-300/80"
             >
-              <div className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-gold" />
-              <span className="text-xs font-medium tracking-luxury text-gold-200 uppercase">
-                UAE Licensed & Regulated
-              </span>
-            </motion.div>
+              Just Gold & Silver Savings
+            </motion.span>
 
-            {/* Main Headline */}
+            {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              style={{ scale: headlineScale }}
-              className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium text-white mb-6 leading-tight"
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="text-5xl md:text-6xl xl:text-7xl font-serif font-semibold leading-[1.1] text-white"
             >
-              Real Gold.
-              <br />
-              <span className="text-gradient-gold">Real Ownership.</span>
+              Build Wealth in
+              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-gold-400 via-gold-200 to-silver-200">
+                Gold & Silver
+              </span>
+              Savings
             </motion.h1>
 
-            {/* Subheadline - fades slower */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6 }}
-              style={{ opacity: subheadlineOpacity }}
-              className="text-lg md:text-xl text-gold-100/70 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
-            >
-              Buy and sell 24K investment-grade gold digitally. 
-              Fully backed by physical gold stored in insured UAE vaults.
-            </motion.p>
+            {/* ---------- FEATURE CARDS ---------- */}
+            <div className="grid sm:grid-cols-3 gap-6 pt-10">
+              {features.map((f, i) => (
+                <div
+                  key={i}
+                  className="group relative rounded-2xl border border-gold-400/15 
+  bg-gradient-to-b from-navy-800/80 to-navy-900/90 
+  backdrop-blur-xl px-6 py-6 
+  shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+                >
+                  {/* Subtle edge highlight (no animation) */}
+                  <div
+                    className="pointer-events-none absolute inset-0 rounded-2xl
+    shadow-[inset_0_0_0_1px_rgba(255,215,120,0.25)]"
+                  />
 
-            {/* CTA Buttons with scroll-enhanced glow */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-12"
-            >
-              <motion.a 
-                href="#cta" 
-                style={{ 
-                  boxShadow: useTransform(ctaGlow, v => `0 0 ${20 + v * 30}px hsl(var(--gold-400) / ${0.3 + v * 0.4})`)
-                }}
-                className="btn-gold rounded-full text-base font-medium min-w-[200px] transition-all duration-300"
-              >
-                Buy Gold Now
-              </motion.a>
-              <a 
-                href="#how-it-works" 
-                className="px-8 py-3 rounded-full text-base font-medium min-w-[200px] border border-gold-400/40 text-gold-200 hover:bg-gold-400/10 hover:border-gold-400/60 transition-all duration-300"
-              >
-                How It Works
-              </a>
-            </motion.div>
+                  {/* Icon */}
+                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gold-400/10 text-gold-300">
+                    <f.icon size={22} strokeWidth={1.6} />
+                  </div>
 
-            {/* App Store Badges */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
-              className="flex justify-center lg:justify-start gap-4"
-            >
-              <a href="#" className="opacity-70 hover:opacity-100 transition-opacity duration-300">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
-                  alt="Download on App Store" 
-                  className="h-10"
-                />
-              </a>
-              <a href="#" className="opacity-70 hover:opacity-100 transition-opacity duration-300">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                  alt="Get it on Google Play" 
-                  className="h-10"
-                />
-              </a>
-            </motion.div>
-          </motion.div>
+                  {/* Text */}
+                  <h4 className="text-sm font-semibold text-gold-200 tracking-wide">
+                    {f.title}
+                  </h4>
+                  <p className="mt-1 text-xs text-gray-400">{f.subtitle}</p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-          {/* Right: Gold Bars Image with scroll animations */}
-          <motion.div 
-            className="relative order-1 lg:order-2 flex justify-center lg:justify-end"
-            style={{ 
-              scale: goldScale,
-              y: goldY,
-              rotateZ: goldRotate
-            }}
+          {/* ---------- RIGHT IMAGE ---------- */}
+          <motion.div
+            style={{ y: imageParallaxY, scale: imageScale }}
+            className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
           >
-            {/* Gold glow behind image */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--gold-400)/0.25)_0%,_transparent_70%)] blur-3xl scale-110" />
-            
-            {/* Main gold image */}
+            {/* GOLD + SILVER AMBIENT GLOW */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.3 }}
-              className="relative"
-            >
-              <img 
-                src={goldBarsHero}
-                alt="Premium 24K Gold Bars"
-                className="w-full max-w-lg lg:max-w-xl xl:max-w-2xl h-auto object-contain drop-shadow-2xl"
-              />
-              
-              {/* Subtle reflection effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent pointer-events-none" />
-            </motion.div>
+              animate={{ opacity: [0.35, 0.55, 0.35] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 -z-10 
+      bg-[radial-gradient(circle_at_center,rgba(255,215,120,0.35) 0%,rgba(192,192,192,0.2) 40%,transparent 70%)] 
+      blur-3xl scale-110"
+            />
+
+            {/* FLOATING IMAGE WITH FASTER AND LARGER Y MOTION */}
+            <motion.img
+              src={goldBarsHero}
+              alt="Gold & Silver Investment"
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: [0, -20, 0], // increased Y displacement
+              }}
+              transition={{
+                opacity: { duration: 0.6, ease: "easeOut" },
+                scale: { duration: 0.6, ease: "easeOut" },
+                y: {
+                  duration: 1.5, // faster movement
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              }}
+              className="relative z-10 max-w-lg xl:max-w-2xl 
+      drop-shadow-[0_40px_80px_rgba(0,0,0,0.65)]"
+            />
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* ---------- SCROLL INDICATOR ---------- */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        style={{ opacity: contentOpacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold-300/60 flex flex-col items-center gap-2"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2 text-gold-300/60"
-        >
-          <span className="text-xs tracking-luxury uppercase">Scroll to Explore</span>
-          <ChevronDown size={20} />
-        </motion.div>
+        <span className="text-xs tracking-widest uppercase">Scroll</span>
+        <ChevronDown size={18} />
       </motion.div>
     </section>
   );
-};
-
-export default HeroSection;
+}
