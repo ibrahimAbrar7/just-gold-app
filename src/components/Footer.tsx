@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import logo from "@/assets/logo1.jpg";
+import logofooter from "@/assets/logo1.jpg";
 
 const Footer = () => {
   const footerLinks = {
@@ -40,7 +40,7 @@ const Footer = () => {
               {/* Logo Image */}
               <div className="w-32 h-32 md:w-52 md:h-52 relative">
                 <img
-                  src={logo} // import your logo at the top: import logo from "@/assets/logo.png";
+                  src={logofooter} // import your logo at the top: import logo from "@/assets/logo.png";
                   alt="JustGold & Silver Logo"
                   className="w-full h-full object-contain"
                 />
